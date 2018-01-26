@@ -1,0 +1,3 @@
+#hello:
+#    path: /hello
+#    controller: App\Controller\HelloWorldController::hello

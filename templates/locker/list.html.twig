@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'List of Lockers' %}
+
+{% block body %}
+    <h1>List of Lockers</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Locker</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for locker in lockers %}
+            <tr>
+                <td>{{ locker.number }}</td>
+                <td>{{ locker.status|replace({'_': ' '})|title }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Get Your Package</h2>
+
+    {% if app.session.flashBag.has('error') %}
+        <p class="flash-errors">
+            {{ app.session.flashBag.get('error').0 }}
+        </p>
+    {% endif %}
+
+    {% if app.session.flashBag.has('success') %}
+        <p class="flash-success">
+            {{ app.session.flashBag.get('success').0 }}
+        </p>
+    {% endif %}
+
+    <form action="{{ path('locker_pickup') }}" method="post">
+        <div>
+            <label>Access code:</label>
+            <input type="text" name="accessCode"/>
+            <button type="submit">Send</button>
+        </div>
+    </form>
+
+{% endblock %}

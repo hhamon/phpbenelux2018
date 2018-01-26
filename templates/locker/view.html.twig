@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title locker.number %}
+
+{% block body %}
+    <h1>{{ locker.number }}</h1>
+
+    <form action="{{ path('locker_pickup') }}" method="post">
+        <div>
+            <label>Access code:</label>
+            <input type="text" name="accessCode"/>
+            <button type="submit">Send</button>
+        </div>
+    </form>
+
+{% endblock %}
