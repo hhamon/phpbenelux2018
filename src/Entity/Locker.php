@@ -7,6 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\LockerRepository")
+ * @ORM\Table(uniqueConstraints={
+ *   @ORM\UniqueConstraint("locker_number_unique", columns="number"),
+ *   @ORM\UniqueConstraint("locker_access_code_unique", columns="access_code")
+ * })
  */
 class Locker
 {
@@ -22,7 +26,7 @@ class Locker
     private $id;
 
     /**
-     * @ORM\Column(length=5, unique=true)
+     * @ORM\Column(length=5)
      */
     private $number;
 
@@ -32,7 +36,7 @@ class Locker
     private $status;
 
     /**
-     * @ORM\Column(nullable=true)
+     * @ORM\Column(nullable=true, length=7)
      */
     private $accessCode;
 
